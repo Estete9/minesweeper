@@ -1,0 +1,18 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    enum class DangerLevel {
+        HIGH,
+        MEDIUM,
+        LOW
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/6251
+status: Solved
+feedback:
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/6251">JetBrains
+    Academy</a></html>
+  time: Mon, 21 Sep 2020 02:35:26 UTC
+record: -1

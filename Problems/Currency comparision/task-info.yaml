@@ -1,0 +1,36 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    import java.util.Scanner
+
+    fun main(args: Array<String>) {
+        val input = Scanner(System.`in`)
+        // put your code here
+    }
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/6255
+status: Solved
+feedback:
+  message: |-
+    <html>[+] Test #1. OK
+    [+] Test #2. OK
+    [+] Test #3. OK
+    [+] Test #4. OK
+    [+] Test #5. OK
+    [+] Test #6. OK
+    [+] Test #7. OK
+    [+] Test #8. OK
+    [+] Test #9. OK
+    [+] Test #10. OK
+    [+] Test #11. OK
+    [+] Test #12. OK
+    [+] Test #13. OK
+    [+] Test #14. OK
+    [+] Test #15. OK
+    [+] Test #16. OK
+
+    16 of 16 test(s) passed.<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/6255">JetBrains Academy</a></html>
+  time: Fri, 25 Sep 2020 12:10:14 UTC
+record: -1

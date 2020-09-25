@@ -1,0 +1,16 @@
+type: code
+files:
+- name: src/Main.kt
+  visible: true
+  text: |-
+    class Task(val name: String)
+
+    // create the Manager singleton here
+  learner_created: false
+feedback_link: https://hyperskill.org/learn/step/10703
+status: Solved
+feedback:
+  message: <html>Correct solution<br/><br/>Continue on <a href="https://hyperskill.org/learn/step/10703">JetBrains
+    Academy</a></html>
+  time: Sun, 20 Sep 2020 03:23:23 UTC
+record: -1
