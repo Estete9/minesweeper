@@ -155,14 +155,30 @@ class Grid() {
 
         return fullGrid
     }
+
     //fun that for each row prints the grid's row
     fun printGrid(fullGrid: Array<String>) {
+//        prints the column numbers border
+        print(" |")
+        for (i in 1..size) print(i)
+        println("|")
+//        prints the top separating border
+        print("-|")
+        for (i in 1..size) print("-")
+        println("|")
+//        prints the grid
         for (i in 0 until size) {
+//            prints the row numbers
+            print("${i + 1}|")
             for (j in 0 until size) {
                 print(fullGrid[i * size + j])
             }
-            println()
+            println("|")
         }
+//        prints the bottom separating border
+        print("-|")
+        for (i in 1..size) print("-")
+        println("|")
     }
 }
 
