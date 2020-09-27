@@ -10,9 +10,9 @@ const val size = 9
 
 class MineArray() {
     //    fun that takes an input called inputStream and returns the number of mines
-    fun getMineCount(inputStream: InputStream): Int {
+    fun getMineCount(numberOfMines: InputStream): Int {
         print("How many mines do you want on the field? ")
-        return Scanner(inputStream).nextInt()
+        return Scanner(numberOfMines).nextInt()
     }
 
     //    fun that takes the number of mines and creates an IntArray called mineArray using a random number and repeating until the random number isn't in the mineArray
@@ -200,17 +200,17 @@ class Grid() {
     }
 
     //    TODO doesnt recognize the second input if it has a space, only works when hitting enter
-    fun getMineSetting(row: InputStream, column: InputStream): Int {
+    fun getMineSetting(): Int {
         println("Set/delete mines marks (x and y coordinates):")
-        return getCellNum(Scanner(row).next().toInt() - 1, Scanner(column).next().toInt() - 1)
+        val scanner = Scanner(System.`in`)
+        return getCellNum(scanner.nextInt() - 1, scanner.nextInt() - 1)
     }
 
     fun changeGrid(grid: Grid, mineArray: IntArray) {
         val playerMines = mutableListOf<Int>()
-//        var playerChoice = grid.getMineSetting(System.`in`, System.`in`)
-//        var needPrint = true
+
         do {
-            val playerChoice = grid.getMineSetting(System.`in`, System.`in`)
+            val playerChoice = grid.getMineSetting()
             when {
                 grid.fullGrid[playerChoice].content != "." && grid.fullGrid[playerChoice].content != "*" -> {
                     println("There is a number here!")
@@ -236,7 +236,7 @@ class Grid() {
 }
 
 fun main() {
-
+    val scanner = Scanner(System.`in`)
     val mineCount = MineArray().getMineCount(System.`in`)
     val mineArray = MineArray().makeMineArray(mineCount)
     val grid = Grid()
