@@ -2,16 +2,17 @@ package minesweeper
 
 import java.io.InputStream
 import java.util.*
+import kotlin.collections.HashSet
 import kotlin.random.Random
 
 // constant size for the grid
 const val size = 9
 
-class MineArray() {
+class MineArray {
     //    fun that takes an input called inputStream and returns the number of mines
-    fun getMineCount(inputStream: InputStream): Int {
+    fun getMineCount(numberOfMines: InputStream): Int {
         print("How many mines do you want on the field? ")
-        return Scanner(inputStream).nextInt()
+        return Scanner(numberOfMines).nextInt()
     }
 
     //    fun that takes the number of mines and creates an IntArray called mineArray using a random number and repeating until the random number isn't in the mineArray
@@ -29,135 +30,138 @@ class MineArray() {
     }
 }
 
-class Cell() {
-    var cellNum = 0
-    var isBomb = false
 
+//enum class that contains 4 constants which will be used when creating the cells
+enum class CellConstants(val content: String, val cellNum: Int, var isBomb: Boolean) {
+    NUMBER_CELL("0", 0, false),
+    SAFE_CELL(".", 0, false),
+    MARKED_CELL("*", 0, false),
+    UNMARKED_CELL(".", 0, false);
 }
 
-class Grid() {
-    //    creates the game's grid with the size of the board squared and sets values default to "."
-    val fullGrid = Array(size * size) { "." }
-    fun makeGrid(mineArray: IntArray): Array<String> {
-//    makes and stores the grid into gridArray
+//cell class that takes the values from the CellConstants
+class Cell(cellConstants: CellConstants) {
+    var name = cellConstants.name
+    var content = cellConstants.content
+    var cellNum = cellConstants.cellNum
+    var isBomb = cellConstants.isBomb
+}
 
-        for (i in 0 until size) {
-            for (j in 0 until size) {
-//                creates a cell
-                val cell = Cell()
-//                calculates the cellNum
-                cell.cellNum = i * size + j
-//                checks if the cellNum is in the mine array to change the cell from the default "." to "X"
-                if (cell.cellNum in mineArray) {
-                    fullGrid[cell.cellNum] = "X"
-                }
-//                in the loop goes by every mine "X" and modifies the cells around it
-                if (fullGrid[cell.cellNum] == "X") {
-//                    checks if the surrounding cell exists using getOrNull
-//                    checks that when the column is 0 the cell modification doesn't take place because the bomb won't modify the cell 1 row up
-                    if (fullGrid.getOrNull(cell.cellNum - 1) != null && j != 0) {
-//                        checks that the cell to be modified isn't a mine
-                        if (fullGrid[cell.cellNum - 1] != "X") {
-//                            checks that if the cell to be modified is "." changes to 1, otherwise changes to Int and then increases by 1 then returns to String
-                            if (fullGrid[cell.cellNum - 1] == ".") {
-                                fullGrid[cell.cellNum - 1] = "1"
-                            } else {
-                                fullGrid[cell.cellNum - 1] =
-                                        (fullGrid[cell.cellNum - 1].toInt() + 1).toString()
-                            }
-                        }
-                    }
-//                    checks if the surrounding cell exists using getOrNull
-//                    checks that when the column is 0 the cell modification doesn't take place because the bomb won't modify the cell two rows up
-                    if (fullGrid.getOrNull(cell.cellNum - 10) != null && j != 0) {
-                        if (fullGrid[cell.cellNum - 10] != "X") {
-                            if (fullGrid[cell.cellNum - 10] == ".") {
-                                fullGrid[cell.cellNum - 10] = "1"
-                            } else {
-                                fullGrid[cell.cellNum - 10] =
-                                        (fullGrid[cell.cellNum - 10].toInt() + 1).toString()
-                            }
-                        }
-                    }
-//                    checks if the surrounding cell exists using getOrNull
-                    if (fullGrid.getOrNull(cell.cellNum - 9) != null) {
-                        if (fullGrid[cell.cellNum - 9] != "X") {
-                            if (fullGrid[cell.cellNum - 9] == ".") {
-                                fullGrid[cell.cellNum - 9] = "1"
-                            } else {
-                                fullGrid[cell.cellNum - 9] =
-                                        (fullGrid[cell.cellNum - 9].toInt() + 1).toString()
-                            }
-                        }
-                    }
-//                    checks if the surrounding cell exists using getOrNull
-//                    checks that when the column is size - 1 (8 in this case) the cell modification doesn't take place because the bomb won't modify the first cell of the same row
-                    if (fullGrid.getOrNull(cell.cellNum - 8) != null && j != size - 1) {
-                        if (fullGrid[cell.cellNum - 8] != "X") {
-                            if (fullGrid[cell.cellNum - 8] == ".") {
-                                fullGrid[cell.cellNum - 8] = "1"
-                            } else {
-                                fullGrid[cell.cellNum - 8] =
-                                        (fullGrid[cell.cellNum - 8].toInt() + 1).toString()
-                            }
-                        }
-                    }
-//                    checks if the surrounding cell exists using getOrNull
-//                    checks that when the column is size - 1 (8) the cell modification doesn't take place because the bomb won't modify the cell one row below
-                    if (fullGrid.getOrNull(cell.cellNum + 1) != null && j != size - 1) {
-                        if (fullGrid[cell.cellNum + 1] != "X") {
-                            if (fullGrid[cell.cellNum + 1] == ".") {
-                                fullGrid[cell.cellNum + 1] = "1"
-                            } else {
-                                fullGrid[cell.cellNum + 1] =
-                                        (fullGrid[cell.cellNum + 1].toInt() + 1).toString()
-                            }
-                        }
-                    }
-//                    checks if the surrounding cell exists using getOrNull
-//                    checks that when the column is 0 the cell modification doesn't take place because the bomb won't modify the last cell of the same row
-                    if (fullGrid.getOrNull(cell.cellNum + 8) != null && j != 0) {
-                        if (fullGrid[cell.cellNum + 8] != "X") {
-                            if (fullGrid[cell.cellNum + 8] == ".") {
-                                fullGrid[cell.cellNum + 8] = "1"
-                            } else {
-                                fullGrid[cell.cellNum + 8] =
-                                        (fullGrid[cell.cellNum + 8].toInt() + 1).toString()
-                            }
-                        }
-                    }
-//                    checks if the surrounding cell exists using getOrNull
-                    if (fullGrid.getOrNull(cell.cellNum + 9) != null) {
-                        if (fullGrid[cell.cellNum + 9] != "X") {
-                            if (fullGrid[cell.cellNum + 9] == ".") {
-                                fullGrid[cell.cellNum + 9] = "1"
-                            } else {
-                                fullGrid[cell.cellNum + 9] =
-                                        (fullGrid[cell.cellNum + 9].toInt() + 1).toString()
-                            }
-                        }
-                    }
-//                    checks if the surrounding cell exists using getOrNull
-//                    checks that when the column is size - 1 the cell modification doesn't take place because the bomb won't modify the cell two rows bellow
-                    if (fullGrid.getOrNull(cell.cellNum + 10) != null && j != size - 1) {
-                        if (fullGrid[cell.cellNum + 10] != "X") {
-                            if (fullGrid[cell.cellNum + 10] == ".") {
-                                fullGrid[cell.cellNum + 10] = "1"
-                            } else {
-                                fullGrid[cell.cellNum + 10] =
-                                        (fullGrid[cell.cellNum + 10].toInt() + 1).toString()
-                            }
-                        }
-                    }
+object Grid {
+    //receives user input and calculate the cellNum
+
+    private fun getCellNum(row: Int, column: Int) = column * size + row
+
+    //    creates the game's grid with the size of the board squared and sets values default to "Cell.SAFE_CELL"
+    val fullGrid: Array<Cell> = Array(size * size) { Cell(CellConstants.SAFE_CELL) }
+
+    //    makes and stores the grid into gridArray
+    fun makeGrid(mineArray: IntArray): Array<Cell> {
+
+//        iterates through mineArray, creates an cell with UNMARKED_CELL values and changes the isBomb to true,
+//            updates it's cellNum and adds it to the fullGrid, then it checks: if the cells around the mine index exists,
+//            if the cells around are not on the first column or last column and if the cell is not a bomb
+//                while it also checks if the surrounding cells are safe cells so it can change them to number cells or
+//                if they are number cells so they can increase they're content
+        for (i in mineArray) {
+            val cell = Cell(CellConstants.UNMARKED_CELL)
+            cell.isBomb = true
+            cell.cellNum = i
+            fullGrid[i] = cell
+            if (fullGrid.getOrNull(i - 1) != null && i % 9 != 0 && !fullGrid[i - 1].isBomb) {
+
+                if (fullGrid[i - 1].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i - 1
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i - 1] = prevCell
+                } else {
+                    fullGrid[i - 1].content = (fullGrid[i - 1].content.toInt() + 1).toString()
                 }
             }
-        }
 
+            if (fullGrid.getOrNull(i - 10) != null && i % 9 != 0 && !fullGrid[i - 10].isBomb) {
+                if (fullGrid[i - 10].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i - 10
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i - 10] = prevCell
+                } else {
+                    fullGrid[i - 10].content = (fullGrid[i - 10].content.toInt() + 1).toString()
+                }
+
+            }
+            if (fullGrid.getOrNull(i - 9) != null && !fullGrid[i - 9].isBomb) {
+                if (fullGrid[i - 9].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i - 9
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i - 9] = prevCell
+                } else {
+                    fullGrid[i - 9].content = (fullGrid[i - 9].content.toInt() + 1).toString()
+                }
+
+            }
+            if (fullGrid.getOrNull(i - 8) != null && (i + 1) % 9 != 0 && !fullGrid[i - 8].isBomb) {
+                if (fullGrid[i - 8].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i - 8
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i - 8] = prevCell
+                } else {
+                    fullGrid[i - 8].content = (fullGrid[i - 8].content.toInt() + 1).toString()
+                }
+
+            }
+            if (fullGrid.getOrNull(i + 1) != null && (i + 1) % 9 != 0 && !fullGrid[i + 1].isBomb) {
+                if (fullGrid[i + 1].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i + 1
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i + 1] = prevCell
+                } else {
+                    fullGrid[i + 1].content = (fullGrid[i + 1].content.toInt() + 1).toString()
+                }
+            }
+            if (fullGrid.getOrNull(i + 10) != null && (i + 1) % 9 != 0 && !fullGrid[i + 10].isBomb) {
+                if (fullGrid[i + 10].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i + 10
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i + 10] = prevCell
+                } else {
+                    fullGrid[i + 10].content = (fullGrid[i + 10].content.toInt() + 1).toString()
+                }
+
+            }
+            if (fullGrid.getOrNull(i + 9) != null && !fullGrid[i + 9].isBomb) {
+                if (fullGrid[i + 9].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i + 9
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i + 9] = prevCell
+                } else {
+                    fullGrid[i + 9].content = (fullGrid[i + 9].content.toInt() + 1).toString()
+                }
+
+            }
+            if (fullGrid.getOrNull(i + 8) != null && i % 9 != 0 && !fullGrid[i + 8].isBomb) {
+                if (fullGrid[i + 8].name == "SAFE_CELL") {
+                    val prevCell = Cell(CellConstants.NUMBER_CELL)
+                    prevCell.cellNum = i + 8
+                    prevCell.content = (prevCell.content.toInt() + 1).toString()
+                    fullGrid[i + 8] = prevCell
+                } else {
+                    fullGrid[i + 8].content = (fullGrid[i + 8].content.toInt() + 1).toString()
+                }
+
+            }
+        }
         return fullGrid
     }
 
     //fun that for each row prints the grid's row
-    fun printGrid(fullGrid: Array<String>) {
+    fun printGrid(fullGrid: Array<Cell>) {
 //        prints the column numbers border
         print(" |")
         for (i in 1..size) print(i)
@@ -171,7 +175,7 @@ class Grid() {
 //            prints the row numbers
             print("${i + 1}|")
             for (j in 0 until size) {
-                print(fullGrid[i * size + j])
+                print(fullGrid[i * size + j].content)
             }
             println("|")
         }
@@ -180,14 +184,57 @@ class Grid() {
         for (i in 1..size) print("-")
         println("|")
     }
+
+    //   fun that uses a scanner to get the input and returns the result of the getCellNum fun
+    private fun getMineSettingCoords(): Int {
+        println("Set/delete mines marks (x and y coordinates):")
+        val scanner = Scanner(System.`in`)
+        return getCellNum(scanner.nextInt() - 1, scanner.nextInt() - 1)
+    }
+
+    //   updates the grid according to the set/delete mark input
+    fun changeGrid(mineArray: IntArray) {
+        val playerMines = mutableListOf<Int>()
+//        do - while loop that turns the playerMines and the mineArray to a set and stops when they are equal
+        do {
+            val playerChoice = getMineSettingCoords()
+            when {
+//                checks if the chosen cell is a number, then prints the warning and repeats the loop
+                fullGrid[playerChoice].content != "." && fullGrid[playerChoice].content != "*" -> {
+                    println("There is a number here!")
+                    continue
+                }
+//                checks if the chosen cell was set before and depending on that changes the cell val to the correct constant
+                fullGrid[playerChoice].content == "." -> {
+                    val markedCell = Cell(CellConstants.MARKED_CELL)
+                    markedCell.cellNum = playerChoice
+                    if (mineArray.contains(markedCell.cellNum)) markedCell.isBomb = true
+                    fullGrid[playerChoice] = markedCell
+                }
+                fullGrid[playerChoice].content == "*" -> {
+                    val unmarkedCell = Cell(CellConstants.UNMARKED_CELL)
+                    unmarkedCell.cellNum = playerChoice
+                    if (mineArray.contains(unmarkedCell.cellNum)) unmarkedCell.isBomb = true
+                    fullGrid[playerChoice] = unmarkedCell
+                }
+            }
+            if (playerMines.contains(playerChoice)) {
+                playerMines.remove(playerChoice)
+            } else {
+                playerMines.add(playerChoice)
+            }
+            printGrid(fullGrid)
+
+        } while (HashSet(mineArray.asList()) != HashSet(playerMines))
+        println("Congratulations! You found all the mines!")
+    }
 }
 
 fun main() {
-
     val mineCount = MineArray().getMineCount(System.`in`)
     val mineArray = MineArray().makeMineArray(mineCount)
-    val grid = Grid()
-    grid.makeGrid(mineArray)
-    grid.printGrid(grid.fullGrid)
-}
+    Grid.makeGrid(mineArray)
+    Grid.printGrid(Grid.fullGrid)
+    Grid.changeGrid(mineArray)
 
+}

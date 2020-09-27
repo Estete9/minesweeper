@@ -478,5 +478,45 @@ files:
     }
   learner_created: false
 feedback_link: https://hyperskill.org/projects/8/stages/469/implement
-status: Unchecked
-record: -1
+status: Failed
+feedback:
+  message: |-
+    java.lang.AssertionError: Wrong answer in test #1
+
+    There should be 0 &#39;*&#39; symbols in the last grid. Found: 72
+
+    Please find below the output of your program during this failed test.
+    Note that the &#39;&gt;&#39; character indicates the beginning of the input line.
+
+    ---
+
+    How many mines do you want on the field? &gt; 1
+     |123456789|
+    -|---------|
+    1|.111.....|
+    2|.1.1.....|
+    3|.111.....|
+    4|.........|
+    5|.........|
+    6|.........|
+    7|.........|
+    8|.........|
+    9|.........|
+    -|---------|
+    Set/delete mines marks (x and y coordinates):
+    &gt; 1 7 free
+     |123456789|
+    -|---------|
+    1|*111*****|
+    2|*1.1*****|
+    3|*111*****|
+    4|*********|
+    5|*********|
+    6|*********|
+    7|*********|
+    8|*********|
+    9|*********|
+    -|---------|
+    Set/delete mines marks (x and y coordinates):
+  time: Sun, 27 Sep 2020 13:29:08 UTC
+record: 5
