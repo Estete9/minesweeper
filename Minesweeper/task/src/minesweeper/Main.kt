@@ -17,7 +17,7 @@ class MineArray {
 
     //    fun that takes the number of mines and creates an IntArray called mineArray using a random number and repeating until the random number isn't in the mineArray
     //    this random number is then added to the mineArray, this random is where the bomb will go
-    fun makeMineArray(mineCount: Int): IntArray {
+    fun makeMineArray(mineCount: Int, playerChoice: Int): IntArray {
         val mineArray = IntArray(mineCount)
         var random: Int
         for (i in 0 until mineCount) {
@@ -186,7 +186,7 @@ object Grid {
     }
 
     //   fun that uses a scanner to get the input and returns the result of the getCellNum fun
-    private fun getMineSettingCoords(): Int {
+    fun getMineSettingCoords(): Int {
         println("Set/delete mines marks (x and y coordinates):")
         val scanner = Scanner(System.`in`)
         return getCellNum(scanner.nextInt() - 1, scanner.nextInt() - 1)
@@ -232,7 +232,8 @@ object Grid {
 
 fun main() {
     val mineCount = MineArray().getMineCount(System.`in`)
-    val mineArray = MineArray().makeMineArray(mineCount)
+    Grid.printGrid(Grid.fullGrid)
+    val mineArray = MineArray().makeMineArray(mineCount, Grid.getMineSettingCoords())
     Grid.makeGrid(mineArray)
     Grid.printGrid(Grid.fullGrid)
     Grid.changeGrid(mineArray)
