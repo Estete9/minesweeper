@@ -23,7 +23,7 @@ class MineArray {
         for (i in 0 until mineCount) {
             do {
                 random = Random.nextInt(size * size)
-            } while (random in mineArray)
+            } while (random in mineArray || random == playerChoice)
             mineArray[i] = random
         }
         return mineArray
