@@ -20,6 +20,8 @@
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Manager/Problems-Manager.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Manager/Problems-Manager.iml" group="Minesweeper/Problems-Manager" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Rainbow colors/Problems-Rainbow_colors.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Rainbow colors/Problems-Rainbow_colors.iml" group="Minesweeper/Problems-Rainbow_colors" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/The rainbow order/Problems-The_rainbow_order.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/The rainbow order/Problems-The_rainbow_order.iml" group="Minesweeper/Problems-The_rainbow_order" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Triangle/Problems-Triangle.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Triangle/Problems-Triangle.iml" group="Minesweeper/Problems-Triangle" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Unique characters/Problems-Unique_characters.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Unique characters/Problems-Unique_characters.iml" group="Minesweeper/Problems-Unique_characters" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Weather comparison/Problems-Weather_comparison.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Weather comparison/Problems-Weather_comparison.iml" group="Minesweeper/Problems-Weather_comparison" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/util/util.iml" filepath="$PROJECT_DIR$/.idea/modules/util/util.iml" group="Minesweeper/util" />
     </modules>
