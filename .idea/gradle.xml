@@ -13,6 +13,7 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/Minesweeper/task" />
             <option value="$PROJECT_DIR$/Problems/Area printer" />
+            <option value="$PROJECT_DIR$/Problems/Barista problem" />
             <option value="$PROJECT_DIR$/Problems/Blocks in a box" />
             <option value="$PROJECT_DIR$/Problems/Board game basics  Game" />
             <option value="$PROJECT_DIR$/Problems/Board game basics  Player" />
@@ -22,17 +23,21 @@
             <option value="$PROJECT_DIR$/Problems/Constructor property" />
             <option value="$PROJECT_DIR$/Problems/Currency comparision" />
             <option value="$PROJECT_DIR$/Problems/Danger level" />
+            <option value="$PROJECT_DIR$/Problems/Fabric manufacture" />
             <option value="$PROJECT_DIR$/Problems/Fix an error" />
+            <option value="$PROJECT_DIR$/Problems/Frozen desserts" />
             <option value="$PROJECT_DIR$/Problems/Leap year" />
             <option value="$PROJECT_DIR$/Problems/Library" />
             <option value="$PROJECT_DIR$/Problems/Manager" />
             <option value="$PROJECT_DIR$/Problems/Rainbow colors" />
+            <option value="$PROJECT_DIR$/Problems/Read a Double" />
             <option value="$PROJECT_DIR$/Problems/The rainbow order" />
             <option value="$PROJECT_DIR$/Problems/Weather comparison" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
+        <option name="useQualifiedModuleNames" value="true" />
       </GradleProjectSettings>
     </option>
   </component>
