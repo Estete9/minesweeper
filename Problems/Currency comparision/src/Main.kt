@@ -17,7 +17,7 @@ enum class Currencies(val country: String, val currency: String) {
     companion object {
 
         fun containsCountry(country: String): Boolean {
-            return Currencies.values().map { it.name }.contains(country.toUpperCase())
+            return values().map { it.name }.contains(country.toUpperCase())
         }
 
         fun compareCountries(country1: String, country2: String): Boolean {

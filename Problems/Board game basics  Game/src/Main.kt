@@ -5,7 +5,7 @@ object PlayingField {
     }
 
     fun changeSize(newWidth: Int, newHeight: Int) {
-        PlayingField.Size.width = newWidth
-        PlayingField.Size.height = newHeight
+        Size.width = newWidth
+        Size.height = newHeight
     }
 }

@@ -3,6 +3,7 @@ hyperskill_project:
   ide_files: https://stepik.org/media/attachments/lesson/254284/additional_files.json
   is_template_based: false
   use_ide: true
+update_date: Mon, 09 Nov 2020 11:33:15 UTC
 stages:
 - id: 46
   step: 7686
@@ -18,7 +19,7 @@ stages:
   is_completed: true
 - id: 469
   step: 7690
-  is_completed: false
+  is_completed: true
 topics:
   0:
   - title: Units of information
@@ -49,6 +50,8 @@ topics:
     theory_id: 4445
   - title: Type conversion
     theory_id: 4672
+  - title: Reading data with a readLine
+    theory_id: 11224
   - title: Type inference
     theory_id: 9506
   - title: Integers in action
@@ -79,7 +82,7 @@ topics:
   - title: Naming variables
     theory_id: 4389
   - title: IDE
-    theory_id: 3805
+    theory_id: 10996
   - title: IntelliJ IDEA
     theory_id: 3801
   - title: IDEA Basics
@@ -89,10 +92,14 @@ topics:
   2:
   - title: Introduction to OOP
     theory_id: 3614
+  - title: Objects
+    theory_id: 11233
   - title: Declaring functions
     theory_id: 4580
-  - title: Objects
-    theory_id: 6773
+  - title: Default arguments
+    theory_id: 4637
+  - title: Named arguments
+    theory_id: 4640
   - title: String templates
     theory_id: 4547
   - title: Declaring classes
@@ -112,3 +119,5 @@ topics:
     theory_id: 10707
   - title: Enum
     theory_id: 6245
+  - title: Secondary constructor
+    theory_id: 10746
